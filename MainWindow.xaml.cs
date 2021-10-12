@@ -24,5 +24,13 @@ namespace ContactApp
         {
             InitializeComponent();
         }
+
+        //Method to change windows
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //Create instance
+            NewContactWindow newContactWindow = new NewContactWindow();
+            newContactWindow.ShowDialog();
+        }
     }
 }
