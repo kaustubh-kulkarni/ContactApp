@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ContactApp.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace ContactApp
         public MainWindow()
         {
             InitializeComponent();
+            //Read DB to display
+            ReadDb();
         }
 
         //Method to change windows
@@ -31,6 +34,18 @@ namespace ContactApp
             //Create instance
             NewContactWindow newContactWindow = new NewContactWindow();
             newContactWindow.ShowDialog();
+            //Everytime we create new contact read db
+            ReadDb();
+        }
+        //Method to read from DB
+        void ReadDb()
+        {
+            using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.dbPath))
+            {
+                //Create a table to read from
+                conn.CreateTable<Contact>();
+                var contacts = conn.Table<Contact>().ToList();
+            }
         }
     }
 }

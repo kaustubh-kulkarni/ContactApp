@@ -35,14 +35,9 @@ namespace ContactApp
                 Phone = phoneTextBox.Text
             };
 
-            //Create DB and store it
-            string dbName = "Contacts.db";
-            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            string dbPath = System.IO.Path.Combine(folderPath, dbName);
-
             //Create connection for DB "using" statement
             //Connection automatically gets closed as it implements IDisposable
-            using (SQLiteConnection connection = new SQLiteConnection(dbPath))
+            using (SQLiteConnection connection = new SQLiteConnection(App.dbPath))
             {
                 //Create a table with generic class as contact
                 connection.CreateTable<Contact>();
