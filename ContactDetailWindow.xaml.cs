@@ -24,11 +24,27 @@ namespace ContactApp
         {
             InitializeComponent();
             this.contact = contact;
+            nameTextBox.Text = contact.Name;
+            emailTextBox.Text = contact.Email;
+            phoneTextBox.Text = contact.Phone;
+
         }
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
+            //Assign the respective text from textboxes
+            contact.Name = nameTextBox.Text;
+            contact.Email = emailTextBox.Text;
+            contact.Phone = phoneTextBox.Text;
 
+            using (SQLiteConnection connection = new SQLiteConnection(App.dbPath))
+            {
+                //Create a table with generic class as contact
+                connection.CreateTable<Contact>();
+                connection.Update(contact);
+            }
+
+            Close();
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
