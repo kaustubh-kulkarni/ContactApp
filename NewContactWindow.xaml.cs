@@ -40,12 +40,14 @@ namespace ContactApp
             string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             string dbPath = System.IO.Path.Combine(folderPath, dbName);
 
-            //Create connection for DB
-            SQLiteConnection connection = new SQLiteConnection(dbPath);
-            //Create a table with generic class as contact
-            connection.CreateTable<Contact>();
-            connection.Insert(contact);
-            connection.Close();
+            //Create connection for DB "using" statement
+            //Connection automatically gets closed as it implements IDisposable
+            using (SQLiteConnection connection = new SQLiteConnection(dbPath))
+            {
+                //Create a table with generic class as contact
+                connection.CreateTable<Contact>();
+                connection.Insert(contact);
+            }
 
             Close();
         }
