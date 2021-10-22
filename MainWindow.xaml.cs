@@ -74,6 +74,7 @@ namespace ContactApp
             {
                 ContactDetailWindow contactDetailWindow = new ContactDetailWindow(selectedContact);
                 contactDetailWindow.ShowDialog();
+                ReadDb();
             }
         }
     }
