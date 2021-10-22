@@ -48,7 +48,7 @@ namespace ContactApp
             {
                 //Create a table to read from
                 conn.CreateTable<Contact>();
-                contacts = conn.Table<Contact>().ToList();
+                contacts = conn.Table<Contact>().OrderBy(c => c.Name).ToList();
             }
 
             if (contacts != null)
