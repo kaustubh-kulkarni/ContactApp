@@ -12,5 +12,11 @@ namespace ContactApp.Classes
         public string Name { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+
+        //Override the list to show strings of below params
+        public override string ToString()
+        {
+            return $"{Name} - {Email} - {Phone}";
+        }
     }
 }

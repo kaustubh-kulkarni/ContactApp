@@ -40,11 +40,17 @@ namespace ContactApp
         //Method to read from DB
         void ReadDb()
         {
+            List<Contact> contacts;
             using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.dbPath))
             {
                 //Create a table to read from
                 conn.CreateTable<Contact>();
-                var contacts = conn.Table<Contact>().ToList();
+                contacts = conn.Table<Contact>().ToList();
+            }
+
+            if (contacts != null)
+            {
+                contactListView.ItemsSource = contacts;
             }
         }
     }
