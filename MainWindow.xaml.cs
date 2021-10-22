@@ -34,7 +34,7 @@ namespace ContactApp
         //Method to change windows
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Create instance
+            //Create instance of the window
             NewContactWindow newContactWindow = new NewContactWindow();
             newContactWindow.ShowDialog();
             //Everytime we create new contact read db
@@ -42,8 +42,7 @@ namespace ContactApp
         }
         //Method to read from DB
         void ReadDb()
-        {
-            
+        {       
             using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.dbPath))
             {
                 //Create a table to read from
@@ -64,6 +63,18 @@ namespace ContactApp
             var filteredList = contacts.Where(c => c.Name.ToLower().Contains(searchTextBox.Text.ToLower())).ToList();
             //Display it
             contactListView.ItemsSource = filteredList;
+        }
+
+        private void contactListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //Cast the contact
+            Contact selectedContact = (Contact)contactListView.SelectedItem;
+
+            if(selectedContact != null)
+            {
+                ContactDetailWindow contactDetailWindow = new ContactDetailWindow(selectedContact);
+                contactDetailWindow.ShowDialog();
+            }
         }
     }
 }
