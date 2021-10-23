@@ -23,6 +23,9 @@ namespace ContactApp
         public ContactDetailWindow(Contact contact)
         {
             InitializeComponent();
+            //Show window same as main window
+            Owner = Application.Current.MainWindow;
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
             this.contact = contact;
             nameTextBox.Text = contact.Name;
             emailTextBox.Text = contact.Email;

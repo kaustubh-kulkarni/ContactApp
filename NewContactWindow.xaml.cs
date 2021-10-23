@@ -22,6 +22,9 @@ namespace ContactApp
         public NewContactWindow()
         {
             InitializeComponent();
+            //Show window same as main window
+            Owner = Application.Current.MainWindow;
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
         }
 
         //Event handler for click
