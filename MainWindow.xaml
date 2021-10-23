@@ -14,9 +14,14 @@
                  TextChanged="TextBox_TextChanged"/>
 
         <ListView SelectionChanged="contactListView_SelectionChanged" x:Name="contactListView" Margin="0 10 0 0" Height="280" >
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <!--Object params-->
+                    <!--Object params from custom control-->
                     <uc:ContactControl Contact="{Binding}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
